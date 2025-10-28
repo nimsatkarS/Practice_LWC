@@ -1,0 +1,102 @@
+<template>
+
+    <!-- 🌟 MAIN CONTAINER -->
+    <div class="slds-p-around_medium slds-box">
+        <h1 class="slds-text-heading_large slds-text-align_center">
+            ⚡ Lightning Web Component - All in One Example
+        </h1>
+    </div>
+
+    <!-- 🧭 1️⃣ LAYOUT ALIGNMENTS -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">1️⃣ Alignment Examples</h2>
+
+    <!-- Horizontal Alignment using lightning-layout -->
+    <lightning-layout horizontal-align="spread" class="slds-box slds-m-around_small">
+        <lightning-layout-item>
+            <lightning-button label="Left" variant="brand"></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="Center" variant="neutral"></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="Right" variant="brand-outline"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+
+    <!-- Vertical Alignment Example -->
+    <lightning-layout vertical-align="center" class="slds-box slds-m-around_small" multiple-rows>
+        <lightning-layout-item size="6" class="slds-box slds-m-around_small">Top</lightning-layout-item>
+        <lightning-layout-item size="6" class="slds-box slds-m-around_small">Bottom</lightning-layout-item>
+    </lightning-layout>
+
+    <!-- Absolute Alignment -->
+    <div class="slds-box slds-align_absolute-center slds-m-around_medium" style="height:100px;">
+        <p>Centered using <b>slds-align_absolute-center</b></p>
+    </div>
+
+    <!-- 🧱 2️⃣ MARGIN & PADDING -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">2️⃣ Margin & Padding</h2>
+    <div class="slds-box slds-m-around_large slds-p-around_medium slds-theme_default">
+        <p>This box has <b>large margin</b> and <b>medium padding</b>.</p>
+    </div>
+
+    <!-- 🖥️ 3️⃣ DEVICE SPECIFIC SIZE -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">3️⃣ Device Specific Size</h2>
+    <lightning-layout multiple-rows class="slds-box slds-m-around_small">
+        <lightning-layout-item size="4" small-device-size="12" medium-device-size="6" large-device-size="3"
+            class="slds-box slds-m-around_small slds-text-align_center">
+            Desktop: 3/12 | Tablet: 6/12 | Phone: 12/12
+        </lightning-layout-item>
+        <lightning-layout-item size="4" small-device-size="12" medium-device-size="6" large-device-size="3"
+            class="slds-box slds-m-around_small slds-text-align_center">
+            Responsive Box
+        </lightning-layout-item>
+    </lightning-layout>
+
+    <!-- 🔁 4️⃣ ITERATION USING for:each -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">4️⃣ Iteration Example</h2>
+    <lightning-layout multiple-rows horizontal-align="center">
+        <template for:each={fruits} for:item="fruit">
+            <lightning-layout-item key={fruit} size="3" class="slds-box slds-m-around_small slds-text-align_center">
+                <p>{fruit}</p>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+
+    <!-- 🔄 5️⃣ CONDITIONAL RENDERING -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">5️⃣ Conditional Rendering</h2>
+    <lightning-button label="Toggle Info" variant="brand" onclick={toggleInfo}></lightning-button>
+    <template if:true={showInfo}>
+        <div class="slds-box slds-theme_success slds-m-top_small">
+            <p>This message shows when <b>showInfo = true</b></p>
+        </div>
+    </template>
+
+    <!-- 🧍‍♂️ 6️⃣ TWO-WAY DATA BINDING (Input Form Example) -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">6️⃣ Two-Way Data Binding</h2>
+    <lightning-input label="Enter your name" value={userName} onchange={handleChange}></lightning-input>
+    <p class="slds-m-top_small">👋 Welcome, {userName}</p>
+
+    <!-- 🧾 7️⃣ SIMPLE FORM (Login Simulation) -->
+    <h2 class="slds-text-heading_medium slds-m-top_large">7️⃣ Simple Login Form</h2>
+    <lightning-card title="Login Form" class="slds-p-around_medium">
+        <lightning-input label="Email" value={email} onchange={handleEmail}></lightning-input>
+        <lightning-input label="Password" type="password" value={password} onchange={handlePassword}></lightning-input>
+        <div class="slds-text-align_center slds-m-top_small">
+            <lightning-button variant="brand" label="Login" onclick={handleLogin}></lightning-button>
+        </div>
+
+        <template if:true={isLoggedIn}>
+            <div class="slds-box slds-theme_success slds-m-top_small">
+                <p>✅ Welcome {email}!</p>
+            </div>
+        </template>
+    </lightning-card>
+
+    <!-- 8️⃣ PARENT TO CHILD COMMUNICATION -->
+    <lightning-button label="Change message" onclick= {changeMessage}></lightning-button>
+
+    <!-- bind paren's property to child's @api-->
+     <c-child-component message= {parentMessage}></c-child-component>
+
+</template>
